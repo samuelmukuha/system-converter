@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number System Converter</title>
+</head>
+
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #000000;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: orangered;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+
+    <div class="container">
+        <h1>Number System Converter</h1>
+        <div class="form">
+            <label for="number">Enter Number:</label>
+            <input type="text" id="number" placeholder="Enter a number to be Converted here">
+        </div>
+        <div class="form">
+            <label for="base">Select Base:</label>
+            <select id="base">
+                <option value="2">Binary (Base 2)</option>
+                <option value="8">Octal (Base 8)</option>
+                <option value="10">Decimal (Base 10)</option>
+                <option value="16">Hexadecimal (Base 16)</option>
+            </select>
+        </div>
+        <button onclick="convert()">Convert</button>
+
+        <div class="result">
+            <h3>Converted Values:</h3>
+            <p>Binary: <span id="binary"></span></p>
+            <p>Octal: <span id="octal"></span></p>
+            <p>Decimal: <span id="decimal"></span></p>
+            <p>Hexadecimal: <span id="hexadecimal"></span></p>
+        </div>
+    </div>
+
+    <footer>
+        @Flivian,Morris,Gregory,Martin,Samuel: Project. All rights reserved.
+    </footer>
+
+    <script>
+        function convert() {
+            const number = document.getElementById('number').value;
+            const base = document.getElementById('base').value;
+
+            if (number === '') {
+                alert('Please enter a number.');
+                return;
+            }
+
+            const baseValue = parseInt(base);
+
+            let decimalValue;
+            try {
+                decimalValue = parseInt(number, baseValue);
+                if (isNaN(decimalValue)) {
+                    throw 'Invalid input';
+                }
+            } catch (e) {
+                alert('Please enter a valid number for the selected base.');
+                return;
+            }
+
+            const binaryValue = decimalValue.toString(2);
+            const octalValue = decimalValue.toString(8);
+            const hexValue = decimalValue.toString(16).toUpperCase();
+
+            document.getElementById('binary').textContent = binaryValue;
+            document.getElementById('octal').textContent = octalValue;
+            document.getElementById('decimal').textContent = decimalValue;
+            document.getElementById('hexadecimal').textContent = hexValue;
+        }
+    </script>
+</body>
+
+</html>
